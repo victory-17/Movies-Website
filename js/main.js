@@ -435,13 +435,25 @@ $('#menu a').click(function(){
 
 
 
-// Theme Changer
-/* document
-  .getElementById("themeChanger")
-  .addEventListener("change", function () {
-    if (this.checked) {
-      document.body.classList.add("dark-mode");
+// Theme toggle
+document.addEventListener("DOMContentLoaded", function () {
+  const themeIcon = document.getElementById('theme-icon');
+  const currentTheme = localStorage.getItem('theme') || 'dark';
+
+  if (currentTheme === 'light') {
+    document.body.classList.add('light-theme');
+    themeIcon.classList.replace('fa-moon', 'fa-sun');
+  }
+
+  themeIcon.addEventListener('click', function () {
+    document.body.classList.toggle('light-theme');
+    if (document.body.classList.contains('light-theme')) {
+      themeIcon.classList.replace('fa-moon', 'fa-sun');
+      localStorage.setItem('theme', 'light');
     } else {
-      document.body.classList.remove("dark-mode");
+      themeIcon.classList.replace('fa-sun', 'fa-moon');
+      localStorage.setItem('theme', 'dark');
     }
-  }); */
+  });
+});
+
